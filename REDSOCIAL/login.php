@@ -43,48 +43,108 @@ body {
   border-top-left-radius: 0;
   border-top-right-radius: 0;
 }
+#form1{
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-width: 100%;
+
+}
+#form2{
+  text-align: center;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+  max-width: 100%;
+
+}
 </style>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
-<form id="form1" name="form1" method="post" action="">
-  <p>
-    <label for="textfield"></label>
-    Usuario: 
-    <input type="text" name="usuario" id="textfield" />
-  </p>
-  <p>
-    Contraseña: 
-    <input type="password" name="contrasena" id="textfield2" />
-  </p>
-  <p>
-    <input type="submit" name="guardar" id="button" value="Entrar" />
-  </p>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha3/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./css/style.css">
+    <link rel="shortcut icon" href="./images/icon.png" type="image/x-icon">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <title>Sistema de Donaciones</title>
+</head>
+<body>
+  <!-- form 1 login -->
+<form id="form1" name="form1" method="post" action="" >
+   <div class="box">
+    <div class="container">
+        <div class="top">
+            <header>Ingresar</header>
+        </div>
+        <div class="input-field">
+            <input type="text" class="input" name="usuario" placeholder="Username" id="">
+            <i class='bx bx-user' ></i>
+        </div>
+        <div class="input-field">
+            <input type="Password" class="input" name="contrasena" placeholder="Password" id="">
+            <i class='bx bx-lock-alt'></i>
+        </div>
+        <div class="input-field">
+            <input type="submit" class="submit" name="guardar"  value="Entrar" id="" onclick="return validarForm();">
+        </div>
+        <div class="input-field">
+            <input type="submit" class="submit" name=""  value="Registrarse" id="registrarse">
+        </div>
+        <div class="two-col">
+            <div class="one">
+               
+            </div>
+            <div class="two">
+                <label><a href="#">Forgot password?</a></label>
+            </div>
+        </div>
+    </div>
+</div>  
 </form>
-
-
-<main class="form-signin w-100 m-auto">
-	
-  <form id="form1" name="form1" method="post" action="">
-    <img class="mb-4" src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="" width="72" height="57">
-    <h1 class="h3 mb-3 fw-normal">Please sign in</h1>
-
-    <div class="form-floating">
-      <input type="text" class="form-control" id="floatingInput" placeholder="" name="usuario" >
-      <label for="floatingInput">Usuario</label>
+<!-- form 2 registro -->
+<form id="form2" name="form2" method="post" action="" style="display: none;">
+   <div class="box">
+    <div class="container">
+        <div class="top">
+            <header>Registrarse</header>
+        </div>
+        <div class="input-field">
+            <input type="text" class="input" name="usuario" placeholder="Username" id="">
+            <i class='bx bx-user' ></i>
+        </div>
+        <div class="input-field">
+            <input type="Password" class="input" name="contrasena" placeholder="Password" id="">
+            <i class='bx bx-lock-alt'></i>
+        </div>
+        <div class="input-field">
+            <input type="submit" class="submit" name=""  value="Registrarse" id="registrarse" onclick="return validarForm2();">
+        </div>
+        <div class="two-col">
+            <div class="one">
+               
+            </div>
+            <div class="two">
+                <label><a href="#">Forgot password?</a></label>
+            </div>
+        </div>
     </div>
-    <div class="form-floating">
-      <input type="password" class="form-control" id="floatingPassword" placeholder="" name="contrasena">
-      <label for="floatingPassword">Password</label>
-    </div>
+</div>  
+</form>
+</body>
+<script src="./js/index.js"></script>
+</html>
 
-    <div class="checkbox mb-3">
-      <label>
-        <input type="checkbox" value="remember-me"> Remember me
-      </label>
-    </div>
-    <button class="w-100 btn btn-lg btn-primary" type="submit" name="guardar">Sign in</button>
-    <p class="mt-5 mb-3 text-body-secondary">&copy; 2017–2023</p>
-  </form>
-</main>
+
+<!--  -->
+
 
 
 <?php
@@ -101,26 +161,42 @@ if(isset($_POST['guardar'])) {
 	$contar = mysqli_num_rows($result);
 	
 	if ($contar != 0) {
-	
+    
 		while($row=mysqli_fetch_array($result)) {
 		
 			if($usuario == $row['usuario'] && $contrasena == $row['contrasena']) 
-			
-			{
-			
-				$_SESSION['usuario'] = $usuario;
-				
-				$_SESSION['id'] = $row['id'];
-				
-				$_SESSION['rango'] = $row['rango'];
-				
-				header("Location: index.php");
-				
-			}
+{
+  echo "<script>
+Swal.fire({
+  title: '¡Usuario validado!',
+  text: 'Bienvenido ' + '$usuario',
+  icon: 'success',
+  showConfirmButton: false,
+  timer: 1500
+}).then(() => {
+  window.location.href = 'index.php';
+});
+</script>";
+  $_SESSION['usuario'] = $usuario;
+  $_SESSION['id'] = $row['id'];
+  $_SESSION['rango'] = $row['rango'];
+  
+  
+}
+
 			
 		} 
 		
-	} else { echo "El nombre de usuario y/o contraseña no coinciden"; }
+	} else { 
+    echo "<script>
+    Swal.fire({
+      title: 'Error!',
+      text: 'Usuario No existe',
+      icon: 'error',
+      confirmButtonText: 'OK'
+    });
+  </script>";
+  }
 	
 }
 ?>
