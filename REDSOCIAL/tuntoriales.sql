@@ -11,7 +11,7 @@ CREATE TABLE `comentarios` (
   `reply` int(11) NOT NULL,
   `fecha` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
+--fabrizio
 --
 -- Volcado de datos para la tabla `comentarios`
 --
