@@ -2,7 +2,7 @@
 $host = "localhost";
 $dbuser = "root";
 $dbpwd = "";
-$dbname = "redsocial";
+$dbname = "donaciones";
 $charset = "utf8mb4";
 
 // Establece la conexión a la base de datos
