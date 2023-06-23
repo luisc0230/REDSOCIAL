@@ -8,7 +8,32 @@ if(!isset($_SESSION['usuario'])) {
 }
 
 ini_set('error_reporting',0);
+
 ?>
+
+<?php
+
+
+// Función para actualizar y guardar la cantidad de "apoyados" en la base de datos
+function actualizarApoyados($idUsuario, $cantidadApoyados, $conexion) {
+  $query = "UPDATE apoyo SET apoyados = $cantidadApoyados WHERE id = $idUsuario";
+  mysqli_query($conexion, $query);
+}
+
+// Actualizar la cantidad de "apoyados" cuando se hace clic en el botón de apoyar
+if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'apoyar') {
+  $idUsuario = $_GET['id'];
+  $query = "SELECT apoyados FROM apoyo WHERE id = $idUsuario";
+  $result = mysqli_query($conexion, $query);
+  $row = mysqli_fetch_assoc($result);
+  $cantidadApoyados = $row['apoyados'] + 1;
+  actualizarApoyados($idUsuario, $cantidadApoyados, $conexion);
+}
+
+
+?>
+
+$apoyado = $_POST['myCheckbox'];
 <!doctype html>
 <html lang="es-ES">
 <head>
@@ -27,8 +52,14 @@ ini_set('error_reporting',0);
   <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css
+">
 </head>
-
+<style>
+  a , i , span{
+    text-align: none;
+  }
+</style>
 <body>
 
 <header id="header" class="header fixed-top d-flex align-items-center">
@@ -42,13 +73,7 @@ ini_set('error_reporting',0);
       </div>
       <span class="toggle-sidebar-btn">
         <i class='bx bx-menu'></i>
-      </span>      
-      <div class="search-bar">
-        <form class="search-form d-flex align-items-center" method="POST" action="#">
-          <input type="text" name="query" placeholder="Search" title="Enter search keyword" class="form-control">
-          <button type="submit" title="Search"><i class='bx bx-search' ></i></button>
-        </form>
-      </div>
+      </span>
 
 
       <nav class="header-nav ms-auto">
@@ -60,20 +85,7 @@ ini_set('error_reporting',0);
             </a>
           </li>
 
-          <li class="nav-item dropdown">
-            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-              <i class='bx bxs-bell'></i>
-              <span class="badge bg-primary badge-number">4</span>
-            </a>
-          </li>
-
-          <li class="nav-item dropdown">
-            <a class="nav-link nav-icon" href="#" data-bs-toggle="dropdown">
-              <i class='bx bx-message-alt-detail'></i>
-              <span class="badge bg-success badge-number">3</span>
-            </a>
-
-          </li>
+        
           <?php
    
    // Consulta para obtener la ruta del avatar del usuario
@@ -136,25 +148,25 @@ ini_set('error_reporting',0);
   </header><!-- End Header -->
 
   <!-- ======= Sidebar ======= -->
-  <!-- <aside id="sidebar" class="sidebar"> -->
+  <aside id="sidebar" class="sidebar"> 
 
-    <!-- <ul class="sidebar-nav" id="sidebar-nav">
+     <ul class="sidebar-nav" id="sidebar-nav">
 
       <li class="nav-item">
-        <a class="nav-link " href="">
+        <a class="nav-link " href="dashboard.php">
           <i class="bi bi-grid"></i>
           <span>Dashboard</span>
         </a>
-      </li> -->
+      </li> 
 
       
 
       
 
 
-      <!-- <li class="nav-item"> -->
-        <!-- <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-          <i class="bi bi-gem"></i><span>Iconos</span><i class="bi bi-chevron-down ms-auto"></i>
+  <li class="nav-item"> 
+        <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
+          <i class="bi bi-gem"></i><span>Logro</span><i class="bi bi-chevron-down ms-auto"></i>
         </a>
         <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
           <li>
@@ -162,22 +174,12 @@ ini_set('error_reporting',0);
               <i class="bi bi-circle"></i><span id = "counter">Apoyados : 0</span>
             </a>
           </li>
-          <li>
-            <a href="">
-              <i class="bi bi-circle"></i><span>Remix Icons</span>
-            </a>
-          </li>
-          <li>
-            <a href="">
-              <i class="bi bi-circle"></i><span>Boxicons</span>
-            </a>
-          </li>
+         
         </ul>
-      </li> -->
+      </li> 
 
 
 
-<!-- 
       <li class="nav-heading">Pages</li>
 
       <li class="nav-item">
@@ -207,24 +209,15 @@ ini_set('error_reporting',0);
           <i class="bi bi-box-arrow-in-right"></i>
           <span>Ingreso</span>
         </a>
-      </li> -->
+      </li> 
 
 
-    <!-- </ul> -->
+    </ul> 
 
-  <!-- </aside>End Sidebar -->
+  </aside>
+  <!-- end sliderbar -->
 
   <main id="main" class="main">
-
-    <!-- <div class="pagetitle">
-      <h1>Dashboard</h1>
-      <nav>
-        <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="">Home</a></li>
-          <li class="breadcrumb-item active">Dashboard</li>
-        </ol>
-      </nav>
-    </div> -->
 
     <section class="section dashboard">
       
@@ -240,7 +233,7 @@ ini_set('error_reporting',0);
      <textarea name="comentario" cols="80" rows="5" id="textarea"><?php if(isset($_GET['user'])) { ?><?php } ?> </textarea>
    </p>
    <p>
-     <input type="submit" <?php if (isset($_GET['id'])) { ?>name="reply"<?php } else { ?>name="comentar"<?php } ?>value="Comentar">
+     <input type="submit" class="btn btn-primary" <?php if (isset($_GET['id'])) { ?>name="reply"<?php } else { ?>name="comentar"<?php } ?>value="Comentar">
    </p>
  </center>
 </form>
@@ -357,7 +350,7 @@ function updateCounter() {
   </main><!-- End #main -->
 
   <!-- Modal -->
-<!-- <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+ <div class="modal fade" id="staticBackdrop" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
       <div class="modal-header">
@@ -382,7 +375,7 @@ function updateCounter() {
       </div>
     </div>
   </div>
-</div> -->
+</div> 
 <script> 
 formData.append('avatar', archivo.files[0]);
 
@@ -470,6 +463,7 @@ function guardarCambios() {
   <script src="./assets/js/main.js"></script>
   <script src = "./js/index.js"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.min.js" integrity="sha512-dq3kF/4nDh/jiAafJf7dZJiklZmzJGpsHSAdphnC9OFnADk1EwiYbYgqb+sTsv8uJWFn1v2Og6fyD0xt7tyX9A==" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
 
   
 </body>
