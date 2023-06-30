@@ -11,7 +11,6 @@ ini_set('error_reporting',0);
 
 ?>
 
-//Aporte de Erick
     <?php
     // Establecer la conexión con la base de datos
     $servername = "localhost";
