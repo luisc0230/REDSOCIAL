@@ -11,6 +11,8 @@ ini_set('error_reporting',0);
 
 ?>
 
+/*Aporte esta parte del proyecto
+
     <?php
     // Establecer la conexión con la base de datos
     $servername = "localhost";
@@ -67,7 +69,7 @@ $totalComentarios = $rowComentarios['totalComentarios'];
   <link href="assets/css/style.css" rel="stylesheet">
 ">
 </head>
-	//Termine mi Aporte
+	*/Termine mi Aporte
 <body>   
 <div class="d-flex justify-content-center">
     <div class="container" style="position: relative; top: 70px; right: -300px;">
