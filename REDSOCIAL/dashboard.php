@@ -16,7 +16,7 @@ ini_set('error_reporting',0);
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "tuntoriales";
+    $dbname = "donaciones";
 
     $conexion = new mysqli($servername, $username, $password, $dbname);
 
