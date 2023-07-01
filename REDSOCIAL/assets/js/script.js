@@ -6,7 +6,9 @@ i18next.init({
           
 
             "nav_home": "Home",
+            "nav_ingreso" : "Ingreso",
             "nav_celebrate": "Celebración",
+            "nav_idioma" : "Idioma",
             "nav_message": "Mensaje",
             "home_title": "Comparte tu amor, dona ahora!",
             "home_description": "Tu donación puede marcar la diferencia entre la esperanza y la desesperación para aquellos que más lo necesitan. ¡Dona y cambia vidas!",
@@ -41,7 +43,9 @@ i18next.init({
         translation: {
             "nav_home": "Home",
             "nav_celebrate": "Celebrate",
+            "nav_idioma" : "Language",
             "nav_message": "Message",
+            "nav_ingreso" : "Join",
             "home_title": "Share your love, <br> donate now!",
             "home_description": "Your donation can make the difference between hope and despair for those who need it the most. Donate and change lives!",
             "start_donating": "Start Donating",
