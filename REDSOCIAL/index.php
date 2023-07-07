@@ -152,14 +152,14 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'apoyar'
      <ul class="sidebar-nav" id="sidebar-nav">
 
      <li class="nav-item">
-   <a class="nav-link collapsed" href="">
+   <a class="nav-link " href="">
      <i class="bi bi-grid"></i>
      <span>Inicio</span>
    </a>
  </li> 
       
      <li class="nav-item">
-   <a class="nav-link " href="dashboard.php">
+   <a class="nav-link collapsed" href="dashboard.php">
      <i class="bi bi-grid"></i>
      <span>Dashboard</span>
    </a>
