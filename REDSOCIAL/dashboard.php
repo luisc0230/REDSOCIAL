@@ -11,14 +11,12 @@ ini_set('error_reporting',0);
 
 ?>
 
-/*Aporte esta parte del proyecto*/
-
     <?php
     // Establecer la conexión con la base de datos
     $servername = "localhost";
     $username = "root";
     $password = "";
-    $dbname = "donaciones";
+    $dbname = "tuntoriales";
 
     $conexion = new mysqli($servername, $username, $password, $dbname);
 
@@ -69,7 +67,6 @@ $totalComentarios = $rowComentarios['totalComentarios'];
   <link href="assets/css/style.css" rel="stylesheet">
 ">
 </head>
-	/*Termine mi Aporte*/
 <body>   
 <div class="d-flex justify-content-center">
     <div class="container" style="position: relative; top: 70px; right: -300px;">
@@ -147,7 +144,7 @@ $totalComentarios = $rowComentarios['totalComentarios'];
           <li class="nav-item dropdown pe-3">
             <a class="nav-link nav-profile d-flex align-items-center pe-0" href="#" data-bs-toggle="dropdown">
               <img src="<?php echo $ruta_avatar; ?>" alt="Profile" class="rounded-circle" >
-              <span class="d-none d-md-block dropdown-toggle ps-2"></span><?php echo $_SESSION['usuario']; ?>
+              <span class="d-none d-md-block"></span><?php echo $_SESSION['usuario']; ?>
             </a>
 
             <ul class="dropdown-menu dropdown-menu-end dropdown-menu-arrow profile">
@@ -197,7 +194,7 @@ $totalComentarios = $rowComentarios['totalComentarios'];
 <ul class="sidebar-nav" id="sidebar-nav">
 
 <li class="nav-item">
-   <a class="nav-link " href="index.php">
+   <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="index.php">
      <i class="bi bi-grid"></i>
      <span>Inicio</span>
    </a>
@@ -210,45 +207,15 @@ $totalComentarios = $rowComentarios['totalComentarios'];
    </a>
  </li> 
 
- 
 
- 
-
-
-<li class="nav-item"> 
-   <a class="nav-link collapsed" data-bs-target="#icons-nav" data-bs-toggle="collapse" href="#">
-     <i class="bi bi-gem"></i><span>Logro</span><i class="bi bi-chevron-down ms-auto"></i>
-   </a>
-   <ul id="icons-nav" class="nav-content collapse " data-bs-parent="#sidebar-nav">
-     <li>
-       <a href="">
-         <i class="bi bi-circle"></i><span id = "counter">Apoyados : 0</span>
-       </a>
-     </li>
-    
-   </ul>
- </li> 
 
 
 
  <li class="nav-heading">Pages</li>
 
- <li class="nav-item">
-   <a class="nav-link collapsed" type="button" data-bs-toggle="modal" data-bs-target="#staticBackdrop">
-     <i class="bi bi-person"></i>
-     <span>Perfil</span>
-   </a>
- </li>
 
  <li class="nav-item">
-   <a class="nav-link collapsed" href="">
-     <i class="bi bi-question-circle"></i>
-     <span>F.A.Q</span>
-   </a>
- </li>
-
- <li class="nav-item">
-   <a class="nav-link collapsed" href="">
+   <a class="nav-link collapsed" href="mailto:luisc0230@hotmail.com">
      <i class="bi bi-envelope"></i>
      <span>Contactarnos</span>
    </a>
@@ -297,19 +264,13 @@ var chart = new Chart(ctx, {
 });
 </script>
 <!-- Vendor JS Files -->
-<script src="./assets/vendor/apexcharts/apexcharts.min.js"></script>
   <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="./assets/vendor/echarts/echarts.min.js"></script>
-  <script src="./assets/vendor/quill/quill.min.js"></script>
-  <script src="./assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="./assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="./assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
   <script src="./assets/js/main.js"></script>
   <script src = "./js/index.js"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.min.js" integrity="sha512-dq3kF/4nDh/jiAafJf7dZJiklZmzJGpsHSAdphnC9OFnADk1EwiYbYgqb+sTsv8uJWFn1v2Og6fyD0xt7tyX9A==" crossorigin="anonymous"></script>
+  <script src="./assets/js/barra.js"></script>
 
 </body>
 </html>
