@@ -69,7 +69,7 @@
                         </div>
                       </li>
                       <li class="nav__item">
-                        <a href="login.php" class="nav__link" data-i18n="nav_message">Ingreso</a>
+                        <a href="login.php" class="nav__link" >Ingreso</a>
                     </li>
                       
                     
