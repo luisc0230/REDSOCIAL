@@ -9,6 +9,10 @@ if(isset($_SESSION['usuario'])) {
 
 ini_set('error_reporting',0);
 ?>
+
+
+
+
 <style>
 	html,
 body {
@@ -110,7 +114,7 @@ body {
 </div>  
 </form>
 <!-- form 2 registro -->
-<form id="form2" name="form2" method="post" action="" style="display: none;">
+<form id="form2" name="form2" method="post" action="login.php" style="display: none;">
    <div class="box">
     <div class="container">
         <div class="top">
@@ -145,7 +149,32 @@ body {
 
 <!--  -->
 
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    // Obtener los valores del formulario
+    $usuario = $_POST["usuario"];
+    $contrasena = md5($_POST["contrasena"]); // Aplicar MD5 a la contraseña
+    $avatar = "./images/avatar.jpg"; // Ruta del archivo de avatar predeterminado
+    $fecha_reg = date("Y-m-d"); // Obtener la fecha actual
 
+    // Consulta para insertar los datos en la tabla usuarios
+    $sql = "INSERT INTO usuarios (usuario, contrasena, avatar, fecha_reg) VALUES ('$usuario', '$contrasena', '$avatar', '$fecha_reg')";
+
+    // Ejecutar la consulta
+    if (mysqli_query($connect, $sql)) {
+      echo '<script>
+      Swal.fire({
+          icon: "success",
+          title: "¡Registro exitoso!",
+          text: "El registro se ha realizado correctamente.",
+          confirmButtonText: "OK"
+      });
+  </script>';
+    } else {
+        echo "Error al registrar: " . mysqli_error($connect);
+    }
+}
+?>
 
 <?php
 if(isset($_POST['guardar'])) {
@@ -183,7 +212,6 @@ Swal.fire({
   
   
 }
-
 			
 		} 
 		
