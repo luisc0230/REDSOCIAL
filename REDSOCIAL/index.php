@@ -37,7 +37,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'apoyar'
 <html lang="es-ES">
 <head>
   <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
-  <title>Sistema de Comentarios</title>
+  <title>Sistema de Donaciones</title>
   <link rel="stylesheet" type="text/css" href="styles.css">
   <link rel="stylesheet" type="text/css" href="header.css">
   <!-- Google Fonts -->
@@ -56,7 +56,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'apoyar'
 </head>
 <style>
   a , i , span{
-    text-align: none;
+    text-decoration: none;
   }
 </style>
 <body>
@@ -221,7 +221,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'apoyar'
     <section class="section dashboard">
       
       <!-- aca -->
-      <h1 class = "text-center">SISTEMA DE COMENTARIOS</h1>
+      <h1 class = "text-center">SISTEMA DE DONACIONES</h1>
 
 
 
