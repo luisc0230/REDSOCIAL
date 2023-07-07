@@ -8,7 +8,6 @@ if(!isset($_SESSION['usuario'])) {
 }
 
 ini_set('error_reporting',0);
-
 ?>
 
 <?php
@@ -33,7 +32,7 @@ if (isset($_GET['id']) && isset($_GET['action']) && $_GET['action'] === 'apoyar'
 
 ?>
 
-$apoyado = $_POST['myCheckbox'];
+<!-- $apoyado = $_POST['myCheckbox']; -->
 <!doctype html>
 <html lang="es-ES">
 <head>
@@ -152,12 +151,19 @@ $apoyado = $_POST['myCheckbox'];
 
      <ul class="sidebar-nav" id="sidebar-nav">
 
-      <li class="nav-item">
-        <a class="nav-link " href="dashboard.php">
-          <i class="bi bi-grid"></i>
-          <span>Dashboard</span>
-        </a>
-      </li> 
+     <li class="nav-item">
+   <a class="nav-link collapsed" href="">
+     <i class="bi bi-grid"></i>
+     <span>Inicio</span>
+   </a>
+ </li> 
+      
+     <li class="nav-item">
+   <a class="nav-link " href="dashboard.php">
+     <i class="bi bi-grid"></i>
+     <span>Dashboard</span>
+   </a>
+ </li> 
 
       
 
@@ -190,14 +196,7 @@ $apoyado = $_POST['myCheckbox'];
       </li>
 
       <li class="nav-item">
-        <a class="nav-link collapsed" href="">
-          <i class="bi bi-question-circle"></i>
-          <span>F.A.Q</span>
-        </a>
-      </li>
-
-      <li class="nav-item">
-        <a class="nav-link collapsed" href="">
+        <a class="nav-link collapsed" href="mailto:luisc0230@hotmail.com">
           <i class="bi bi-envelope"></i>
           <span>Contactarnos</span>
         </a>
@@ -240,7 +239,7 @@ $apoyado = $_POST['myCheckbox'];
 
 <?php
    if(isset($_POST['comentar'])) {
-       $query = mysqli_query($connect,"INSERT INTO comentarios (comentario,usuario,fecha) value ('".$_POST['comentario']."','".$_SESSION['id']."',NOW())");	
+       $query = mysqli_query($connect,"INSERT  INTO comentarios (comentario,usuario,fecha) value ('".$_POST['comentario']."','".$_SESSION['id']."',NOW())");	
        if($query) { header("Location: index.php"); }
    }
 ?>
@@ -449,21 +448,15 @@ function guardarCambios() {
 
   <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
 
-  <!-- Vendor JS Files -->
-  <script src="./assets/vendor/apexcharts/apexcharts.min.js"></script>
-  <script src="./assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <script src="./assets/vendor/chart.js/chart.umd.js"></script>
-  <script src="./assets/vendor/echarts/echarts.min.js"></script>
-  <script src="./assets/vendor/quill/quill.min.js"></script>
-  <script src="./assets/vendor/simple-datatables/simple-datatables.js"></script>
-  <script src="./assets/vendor/tinymce/tinymce.min.js"></script>
-  <script src="./assets/vendor/php-email-form/validate.js"></script>
+
+  
 
   <!-- Template Main JS File -->
   <script src="./assets/js/main.js"></script>
   <script src = "./js/index.js"> </script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/limonte-sweetalert2/7.29.2/sweetalert2.min.js" integrity="sha512-dq3kF/4nDh/jiAafJf7dZJiklZmzJGpsHSAdphnC9OFnADk1EwiYbYgqb+sTsv8uJWFn1v2Og6fyD0xt7tyX9A==" crossorigin="anonymous"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js" integrity="sha384-fbbOQedDUMZZ5KreZpsbe1LCZPVmfTnH7ois6mU1QK+m14rQ1l2bGBq41eYeM/fS" crossorigin="anonymous"></script>
+  <script src="./assets/js/barra.js"></script>
 
   
 </body>
